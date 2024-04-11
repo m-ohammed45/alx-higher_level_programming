@@ -1,11 +1,11 @@
 #!/usr/bin/node
-const [,, arg] = process.argv;
-const num = parseInt(arg);
+const size = process.argv[2];
 
-if (!isNaN(num) && num > 0) {
-  for (let i = 0; i < num; i++) {
-    console.log('C is fun');
+if (!isNaN(size) && parseInt(size) > 0) {
+  for (let i = 0; i < size; i++) {
+    console.log('X'.repeat(size));
   }
 } else {
-  console.log('Missing number of occurrences');
+  console.log('Missing size');
 }
+
