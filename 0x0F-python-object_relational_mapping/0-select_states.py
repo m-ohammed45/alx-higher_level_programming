@@ -2,31 +2,17 @@
 """lists all states from the database hbtn_0e_0usa"""
 
 import MySQLdb
+import sys
 
-def get_states(username, password, database):
-    try:
-        db = MySQLdb.connect(host="localhost", user=username, passwd=password, db=database)
-
-        cursor = db.cursor()
-
-        cursor.execute("SELECT id, name FROM states ORDER BY id")
-
-        rows = cursor.fetchall()
-
-        for row in rows:
-            print(row)
-
-    except MySQLdb.Error as e:
-        print(f"Error: {e}")
-
-    finally:
-        db.close()
 
 if __name__ == "__main__":
-    username = "root"
-    password = "root"
-    database = "hbtn_0e_0_usa"
-
-    get_states(username, password, database)
-
+    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
+            passwd=sys.argv[2], db=sys.argv[3],port3306)
+    c = db.cursor()
+    c.excute("SELECT * FORM states")
+    rows = c.fetchall()
+    for row in rows:
+        print(row)
+    c.close()
+    db.close()
 
